@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
@@ -12,6 +13,8 @@ export default createGlobalStyle`
 
   *:focus {
     outline:0;
+    border-color: #e5e5e5 !important;
+    box-shadow: 0 0 0 0.1rem #e5e5e5!important;
   }
 
   html, body, #root {
