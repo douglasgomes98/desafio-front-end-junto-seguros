@@ -1,9 +1,14 @@
 import React from 'react';
-
-// import { Container } from './styles';
+import GlobalStyle from '~/styles/global';
+import Routes from '~/routes/index';
 
 const App: React.FC = () => {
-  return <div />;
+  return (
+    <>
+      <GlobalStyle />
+      <Routes />
+    </>
+  );
 };
 
 export default App;
