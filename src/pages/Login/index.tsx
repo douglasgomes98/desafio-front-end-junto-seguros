@@ -1,41 +1,57 @@
-import React, { useState, FormEvent } from 'react';
-import { useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React, { useRef } from 'react';
+import * as Yup from 'yup';
+import { SubmitHandler, FormHandles, UnformErrors } from '@unform/core';
+import { Form } from '@unform/web';
 import { Container, FormContainer } from './styles';
 import Logo from '~/assets/images/logo.svg';
+import Input from '~/components/Input';
+
+interface FormData {
+  email: string;
+  password: string;
+}
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [load, setLoad] = useState(false);
-  const [error, setError] = useState(false);
-  const history = useHistory();
+  const formRef = useRef<FormHandles>(null);
+  const load = false;
+  const handleSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      formRef.current?.setErrors({});
 
-  async function login(event: FormEvent) {
-    event.preventDefault();
-    console.log(username, password);
-    toast.success('username');
-  }
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .email('E-mail inválido.')
+          .required('Campo obrigatório.'),
+        password: Yup.string()
+          .min(6, 'São necessários pelo 6 caracteres.')
+          .required('Campo obrigatório.'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      console.log(data);
+    } catch (err) {
+      const validationErrors: UnformErrors = {};
+
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+
+        formRef.current?.setErrors(validationErrors);
+      }
+    }
+  };
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
       <FormContainer className="rounded bg-white p-4 shadow-sm text-center">
         <img src={Logo} alt="logo" />
-        <form className="mt-3" onSubmit={login}>
-          <input
-            type="text"
-            className="form-control mb-2"
-            placeholder="Usuário"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-          <input
-            type="password"
-            className="form-control mb-2"
-            placeholder="Senha"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input type="text" name="email" placeholder="Usuário" />
+          <Input type="password" name="password" placeholder="Senha" />
           {load ? (
             <div className="spinner-border text-danger" role="status">
               <span className="sr-only">Loading...</span>
@@ -45,12 +61,7 @@ const Login: React.FC = () => {
               Entrar
             </button>
           )}
-          {error && (
-            <div className="alert alert-danger mt-2" role="alert">
-              Usuário ou Senha incorretos.
-            </div>
-          )}
-        </form>
+        </Form>
       </FormContainer>
     </Container>
   );
