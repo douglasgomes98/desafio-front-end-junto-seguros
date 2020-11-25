@@ -18,7 +18,7 @@ export function* signIn({ payload }: Action) {
         signInSucess({
           id: 1,
           name: 'Junto Seguros',
-          email: "juntoseguros@mail.com'",
+          email: 'juntoseguros@mail.com',
         }),
       );
 
