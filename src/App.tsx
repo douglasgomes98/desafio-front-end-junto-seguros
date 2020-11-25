@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import GlobalStyle from '~/styles/global';
 import Routes from '~/routes/index';
 
@@ -7,6 +8,7 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <Routes />
+      <ToastContainer />
     </>
   );
 };

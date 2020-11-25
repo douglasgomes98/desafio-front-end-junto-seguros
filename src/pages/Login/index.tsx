@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Container, FormContainer } from './styles';
 import Logo from '~/assets/images/logo.svg';
 
@@ -12,6 +13,8 @@ const Login: React.FC = () => {
 
   async function login(event: FormEvent) {
     event.preventDefault();
+    console.log(username, password);
+    toast.success('username');
   }
 
   return (
