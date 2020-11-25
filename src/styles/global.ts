@@ -13,8 +13,6 @@ export default createGlobalStyle`
 
   *:focus {
     outline:0;
-    border-color: #e5e5e5 !important;
-    box-shadow: 0 0 0 0.1rem #e5e5e5!important;
   }
 
   html, body, #root {

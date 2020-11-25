@@ -1,7 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, FormContainer } from './styles';
-import Logo from '~/assets/images/netflix-logo.svg';
+import Logo from '~/assets/images/logo.svg';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -15,7 +15,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <Container className="d-flex flex-column justify-content-center align-items-center vh-100 bg-dark">
+    <Container className="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
       <FormContainer className="rounded bg-white p-4 shadow-sm text-center">
         <img src={Logo} alt="logo" />
         <form className="mt-3" onSubmit={login}>
@@ -38,7 +38,7 @@ const Login: React.FC = () => {
               <span className="sr-only">Loading...</span>
             </div>
           ) : (
-            <button type="submit" className="btn btn-danger">
+            <button type="submit" className="btn btn-primary">
               Entrar
             </button>
           )}
