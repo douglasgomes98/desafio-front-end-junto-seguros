@@ -2,9 +2,12 @@ import React, { useRef } from 'react';
 import * as Yup from 'yup';
 import { SubmitHandler, FormHandles, UnformErrors } from '@unform/core';
 import { Form } from '@unform/web';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, FormContainer } from './styles';
 import Logo from '~/assets/images/logo.svg';
 import Input from '~/components/Input';
+import { signInRequest } from '~/store/modules/auth/actions';
+import { ApplicationState } from '~/store';
 
 interface FormData {
   email: string;
@@ -13,7 +16,9 @@ interface FormData {
 
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const load = false;
+  const dispatch = useDispatch();
+  const loading = useSelector<ApplicationState>((state) => state.auth.loading);
+
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       formRef.current?.setErrors({});
@@ -31,7 +36,7 @@ const Login: React.FC = () => {
         abortEarly: false,
       });
 
-      console.log(data);
+      dispatch(signInRequest(data));
     } catch (err) {
       const validationErrors: UnformErrors = {};
 
@@ -52,7 +57,7 @@ const Login: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Input type="text" name="email" placeholder="Usuário" />
           <Input type="password" name="password" placeholder="Senha" />
-          {load ? (
+          {loading ? (
             <div className="spinner-border text-danger" role="status">
               <span className="sr-only">Loading...</span>
             </div>
