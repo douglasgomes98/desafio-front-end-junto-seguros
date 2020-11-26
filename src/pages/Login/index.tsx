@@ -7,7 +7,7 @@ import { Container, FormContainer } from './styles';
 import Logo from '~/assets/images/logo.svg';
 import Input from '~/components/Input';
 import { signInRequest } from '~/store/modules/auth/actions';
-import { ApplicationState } from '~/store';
+import { ApplicationState } from '~/store/@types/ApplicationState';
 
 interface FormData {
   email: string;

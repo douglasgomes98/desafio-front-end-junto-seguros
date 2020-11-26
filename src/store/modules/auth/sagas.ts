@@ -1,7 +1,7 @@
 import { all, takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { AnyAction } from 'redux';
-import history from '~/services/history';
+import { push } from 'connected-react-router';
 import { signInSucess, signFailure } from './actions';
 import { Auth, AuthActionTypes } from './types';
 
@@ -22,7 +22,7 @@ export function* signIn({ payload }: Action) {
         }),
       );
 
-      history.push('/dashboard');
+      yield put(push('/dashboard'));
     } else {
       throw new Error();
     }
@@ -33,8 +33,8 @@ export function* signIn({ payload }: Action) {
   }
 }
 
-export function signOut() {
-  history.push('/');
+export function* signOut() {
+  yield put(push('/'));
 }
 
 export default all([

@@ -3,22 +3,21 @@ import React from 'react';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import GlobalStyle from '~/styles/global';
 import Routes from '~/routes/index';
-import history from '~/services/history';
-import { store, persistor } from './store';
+import { store, history, persistor } from '~/store/configureStore';
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <Router history={history}>
+      <ConnectedRouter history={history}>
+        <PersistGate persistor={persistor}>
           <GlobalStyle />
           <Routes />
           <ToastContainer />
-        </Router>
-      </PersistGate>
+        </PersistGate>
+      </ConnectedRouter>
     </Provider>
   );
 };

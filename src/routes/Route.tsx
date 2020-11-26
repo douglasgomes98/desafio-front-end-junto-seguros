@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { ApplicationState } from '~/store';
+import { ApplicationState } from '~/store/@types/ApplicationState';
 
 interface IRouteWrapper extends RouteProps {
   isPrivate?: boolean;
