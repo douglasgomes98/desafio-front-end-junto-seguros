@@ -45,22 +45,13 @@ export interface MovieDetails {
   Production: string;
 }
 
-export interface SearchRequest {
-  name: string;
-}
-
-export interface PaginateRequest {
-  name: string;
-  pageNumber: number;
-}
-
 export interface PaginateSucess {
   pageNumber: number;
   movies: Movie[];
 }
 
 export interface ActionSearchRequest extends AnyAction {
-  payload: SearchRequest;
+  payload: string;
 }
 
 /**
@@ -73,4 +64,5 @@ export interface MovieState {
   readonly loadingSearch: boolean;
   readonly loadingPaginate: boolean;
   readonly currentPage: number;
+  readonly lastSearchParam: string;
 }

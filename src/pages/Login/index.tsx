@@ -7,19 +7,15 @@ import { Container, FormContainer } from './styles';
 import Logo from '~/assets/images/logo.svg';
 import Input from '~/components/Input';
 import { signInRequest } from '~/store/modules/auth/actions';
-import { ApplicationState } from '~/store/@types/ApplicationState';
-
-interface FormData {
-  email: string;
-  password: string;
-}
+import { Auth } from '~/store/modules/auth/types';
+import { ApplicationState } from '~/store/types';
 
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const dispatch = useDispatch();
   const loading = useSelector<ApplicationState>((state) => state.auth.loading);
 
-  const handleSubmit: SubmitHandler<FormData> = async (data) => {
+  const handleSubmit: SubmitHandler<Auth> = async (data) => {
     try {
       formRef.current?.setErrors({});
 

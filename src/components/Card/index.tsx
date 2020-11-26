@@ -1,17 +1,9 @@
 import React from 'react';
-
 import { Container } from './styles';
-
-interface IMovie {
-  Title: string;
-  Year: number;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-}
+import { Movie } from '~/store/modules/movies/types';
 
 interface ICard {
-  data: IMovie;
+  data: Movie;
 }
 
 const Card: React.FC<ICard> = ({ data, ...rest }) => {

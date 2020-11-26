@@ -9,6 +9,7 @@ const INITIAL_STATE: MovieState = {
   loadingSearch: false,
   loadingPaginate: false,
   currentPage: 1,
+  lastSearchParam: '',
 };
 
 const reducer: Reducer<MovieState> = (state = INITIAL_STATE, action) => {
@@ -18,7 +19,8 @@ const reducer: Reducer<MovieState> = (state = INITIAL_STATE, action) => {
         draft.loadingSearch = true;
         break;
       case MoviesActionTypes.SEARCH_MOVIES_SUCESS:
-        draft.currentSearch = action.payload;
+        draft.currentSearch = action.payload.movies;
+        draft.lastSearchParam = action.payload.param;
         draft.loadingSearch = false;
         draft.currentPage = 1;
         break;
@@ -31,8 +33,8 @@ const reducer: Reducer<MovieState> = (state = INITIAL_STATE, action) => {
         break;
       case MoviesActionTypes.PAGINATE_CURRENT_SEARCH_SUCESS:
         draft.loadingPaginate = false;
-        draft.currentSearch = action.payload.data.movies;
-        draft.currentPage = action.payload.data.pageNumber;
+        draft.currentSearch = action.payload.movies;
+        draft.currentPage = action.payload.pageNumber;
         break;
       case MoviesActionTypes.PAGINATE_CURRENT_SEARCH_FAILURE:
         draft.loadingPaginate = false;

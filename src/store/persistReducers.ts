@@ -7,7 +7,7 @@ export default (reducers: Reducer) => {
     {
       key: '@juntoseguros',
       storage,
-      whitelist: ['auth'],
+      whitelist: ['auth', 'movies'],
     },
     reducers,
   );

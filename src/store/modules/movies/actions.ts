@@ -1,23 +1,17 @@
 import { action } from 'typesafe-actions';
-import {
-  MoviesActionTypes,
-  SearchRequest,
-  PaginateRequest,
-  Movie,
-  PaginateSucess,
-} from './types';
+import { MoviesActionTypes, Movie, PaginateSucess } from './types';
 
-export const searcMoviesRequest = (data: SearchRequest) =>
+export const searcMoviesRequest = (data: string) =>
   action(MoviesActionTypes.SEARCH_MOVIES_REQUEST, data);
 
-export const searchMoviesSucess = (data: Movie[]) =>
-  action(MoviesActionTypes.SEARCH_MOVIES_SUCESS, data);
+export const searchMoviesSucess = (data: Movie[], param: string) =>
+  action(MoviesActionTypes.SEARCH_MOVIES_SUCESS, { movies: data, param });
 
 export const searchMoviesFailure = () =>
   action(MoviesActionTypes.SEARCH_MOVIES_FAILURE);
 
-export const paginateCurrentSearchRequest = (data: PaginateRequest) =>
-  action(MoviesActionTypes.PAGINATE_CURRENT_SEARCH_REQUEST, data);
+export const paginateCurrentSearchRequest = () =>
+  action(MoviesActionTypes.PAGINATE_CURRENT_SEARCH_REQUEST);
 
 export const paginateCurrentSearchSucess = (data: PaginateSucess) =>
   action(MoviesActionTypes.PAGINATE_CURRENT_SEARCH_SUCESS, data);
