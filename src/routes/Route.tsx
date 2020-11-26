@@ -19,7 +19,7 @@ const RouteWrapper: React.FC<IRouteWrapper> = ({
   }
 
   if (signed && !isPrivate) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/movies" />;
   }
 
   if (isPrivate) {

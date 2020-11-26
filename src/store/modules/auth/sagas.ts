@@ -17,7 +17,7 @@ export function* signInRequest(data: Action) {
         }),
       );
 
-      yield put(push('/dashboard'));
+      yield put(push('/movies'));
     } else {
       throw new Error();
     }
