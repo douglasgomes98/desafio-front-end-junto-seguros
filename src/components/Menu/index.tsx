@@ -51,7 +51,13 @@ const Menu: React.FC = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <MenuLink to="/my_requests">Filmes Favoritos</MenuLink>
+                <MenuLink to="/my_list">Minha Lista</MenuLink>
+              </li>
+              <li className="nav-item">
+                <MenuLink to="/movies">Filmes</MenuLink>
+              </li>
+              <li className="nav-item">
+                <MenuLink to="/series">Séries</MenuLink>
               </li>
             </ul>
             <button
