@@ -1,3 +1,5 @@
+import { AnyAction } from 'redux';
+
 /**
  * Action types
  */
@@ -20,6 +22,10 @@ export interface User {
   id: number;
   name: string;
   email: string;
+}
+
+export interface Action extends AnyAction {
+  payload: Auth;
 }
 
 /**

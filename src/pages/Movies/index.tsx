@@ -39,7 +39,7 @@ const Movies: React.FC = () => {
       const currentScroll = scrollHeight - scrollTop;
 
       if (currentScroll === clientHeight) {
-        console.log('botton');
+        // console.log('botton');
       }
     }
   }

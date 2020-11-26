@@ -1,19 +1,12 @@
 import { all, takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import { AnyAction } from 'redux';
 import { push } from 'connected-react-router';
 import { signInSucess, signFailure } from './actions';
-import { Auth, AuthActionTypes } from './types';
+import { AuthActionTypes, Action } from './types';
 
-interface Action extends AnyAction {
-  payload: {
-    data: Auth;
-  };
-}
-
-export function* signIn({ payload }: Action) {
+export function* signInRequest(data: Action) {
   try {
-    const { email, password } = payload.data;
+    const { email, password } = data.payload;
 
     if (email === 'juntoseguros@mail.com' && password === 'mecontrataae') {
       yield put(
@@ -40,6 +33,6 @@ export function* signOut() {
 }
 
 export default all([
-  takeLatest(AuthActionTypes.SIGN_IN_REQUEST, signIn),
+  takeLatest(AuthActionTypes.SIGN_IN_REQUEST, signInRequest),
   takeLatest(AuthActionTypes.SIGN_OUT, signOut),
 ]);
