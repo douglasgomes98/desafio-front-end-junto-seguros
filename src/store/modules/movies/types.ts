@@ -54,6 +54,10 @@ export interface ActionSearchRequest extends AnyAction {
   payload: string;
 }
 
+export interface ActionAddMovieInListRequest extends AnyAction {
+  payload: Movie;
+}
+
 /**
  * State type
  */

@@ -23,7 +23,7 @@ export const addMovieInListRequest = (data: Movie) =>
   action(MoviesActionTypes.ADD_MOVIE_IN_LIST_REQUEST, data);
 
 export const addMovieInListSucess = (data: Movie[]) =>
-  action(MoviesActionTypes.ADD_MOVIE_IN_LIST_SUCESS, data);
+  action(MoviesActionTypes.ADD_MOVIE_IN_LIST_SUCESS, { movies: data });
 
 export const removeMovieInListRequest = (data: Movie) =>
   action(MoviesActionTypes.REMOVE_MOVIE_IN_LIST_REQUEST, data);

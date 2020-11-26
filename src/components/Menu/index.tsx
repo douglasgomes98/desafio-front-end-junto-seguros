@@ -31,7 +31,7 @@ const Menu: React.FC = () => {
   return (
     <Container className="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
       <div className="container">
-        <Link className="navbar-brand h1 mb-0" to="/dashboard">
+        <Link className="navbar-brand h1 mb-0" to="/movies">
           <img src={Logo} alt="Junto Seguros" />
         </Link>
 
@@ -51,12 +51,6 @@ const Menu: React.FC = () => {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <MenuLink to="/my_list">Minha Lista</MenuLink>
-            </li>
-            <li className="nav-item">
-              <MenuLink to="/movies">Filmes</MenuLink>
-            </li>
-            <li className="nav-item">
-              <MenuLink to="/series">Séries</MenuLink>
             </li>
           </ul>
           <button

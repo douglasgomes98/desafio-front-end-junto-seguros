@@ -5,8 +5,14 @@ import {
   searchMoviesSucess,
   paginateCurrentSearchFailure,
   paginateCurrentSearchSucess,
+  addMovieInListSucess,
 } from './actions';
-import { ActionSearchRequest, MoviesActionTypes, MovieState } from './types';
+import {
+  ActionSearchRequest,
+  MoviesActionTypes,
+  MovieState,
+  ActionAddMovieInListRequest,
+} from './types';
 import api from '~/services/api';
 import { ApplicationState } from '../../types';
 
@@ -61,10 +67,29 @@ export function* paginateCurrentSearchRequest() {
   }
 }
 
+export function* addMovieInListRequest(data: ActionAddMovieInListRequest) {
+  const moviesStore: MovieState = yield select(
+    (state: ApplicationState) => state.movies,
+  );
+
+  try {
+    const newMovies = [...moviesStore.list, data.payload];
+
+    yield put(addMovieInListSucess(newMovies));
+    toast.success('Filme salvo na sua lista!');
+  } catch (error) {
+    toast.error('Esse filme já está salvo na sua lista.');
+  }
+}
+
 export default all([
   takeLatest(MoviesActionTypes.SEARCH_MOVIES_REQUEST, searcMoviesRequest),
   takeLatest(
     MoviesActionTypes.PAGINATE_CURRENT_SEARCH_REQUEST,
     paginateCurrentSearchRequest,
+  ),
+  takeLatest(
+    MoviesActionTypes.ADD_MOVIE_IN_LIST_REQUEST,
+    addMovieInListRequest,
   ),
 ]);
