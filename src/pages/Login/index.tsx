@@ -65,7 +65,7 @@ const Login: React.FC = () => {
           <Input type="text" name="email" placeholder="Usuário" />
           <Input type="password" name="password" placeholder="Senha" />
           {loading ? (
-            <div className="spinner-border text-danger" role="status">
+            <div className="spinner-border text-primary" role="status">
               <span className="sr-only">Loading...</span>
             </div>
           ) : (
