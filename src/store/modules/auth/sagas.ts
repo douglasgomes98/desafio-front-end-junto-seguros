@@ -6,12 +6,14 @@ import { signInSucess, signFailure } from './actions';
 import { Auth, AuthActionTypes } from './types';
 
 interface Action extends AnyAction {
-  payload: Auth;
+  payload: {
+    data: Auth;
+  };
 }
 
 export function* signIn({ payload }: Action) {
   try {
-    const { email, password } = payload;
+    const { email, password } = payload.data;
 
     if (email === 'juntoseguros@mail.com' && password === 'mecontrataae') {
       yield put(
