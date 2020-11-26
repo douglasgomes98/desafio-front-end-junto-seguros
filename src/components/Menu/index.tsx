@@ -29,48 +29,46 @@ const Menu: React.FC = () => {
   }
 
   return (
-    <>
-      <Container className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div className="container">
-          <Link className="navbar-brand h1 mb-0" to="/dashboard">
-            <img src={Logo} alt="Junto Seguros" />
-          </Link>
+    <Container className="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+      <div className="container">
+        <Link className="navbar-brand h1 mb-0" to="/dashboard">
+          <img src={Logo} alt="Junto Seguros" />
+        </Link>
 
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <MenuLink to="/my_list">Minha Lista</MenuLink>
+            </li>
+            <li className="nav-item">
+              <MenuLink to="/movies">Filmes</MenuLink>
+            </li>
+            <li className="nav-item">
+              <MenuLink to="/series">Séries</MenuLink>
+            </li>
+          </ul>
           <button
-            className="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            className="btn btn-outline-secondary pl-3 pr-3"
+            onClick={() => handleSignOut()}
           >
-            <span className="navbar-toggler-icon" />
+            Sair
           </button>
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <MenuLink to="/my_list">Minha Lista</MenuLink>
-              </li>
-              <li className="nav-item">
-                <MenuLink to="/movies">Filmes</MenuLink>
-              </li>
-              <li className="nav-item">
-                <MenuLink to="/series">Séries</MenuLink>
-              </li>
-            </ul>
-            <button
-              type="button"
-              className="btn btn-outline-secondary pl-3 pr-3"
-              onClick={() => handleSignOut()}
-            >
-              Sair
-            </button>
-          </div>
         </div>
-      </Container>
-    </>
+      </div>
+    </Container>
   );
 };
 
