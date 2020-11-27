@@ -1,6 +1,7 @@
 import produce from 'immer';
 import { Reducer } from 'redux';
 import { MovieState, MoviesActionTypes } from './types';
+import { AuthActionTypes } from '../auth/types';
 
 const INITIAL_STATE: MovieState = {
   list: [],
@@ -44,6 +45,15 @@ const reducer: Reducer<MovieState> = (state = INITIAL_STATE, action) => {
         break;
       case MoviesActionTypes.REMOVE_MOVIE_IN_LIST_SUCESS:
         draft.list = action.payload.movies;
+        break;
+      case AuthActionTypes.SIGN_OUT:
+        draft.list = [];
+        draft.currentMovie = null;
+        draft.currentSearch = [];
+        draft.loadingSearch = false;
+        draft.loadingPaginate = false;
+        draft.currentPage = 1;
+        draft.lastSearchParam = '';
         break;
       default:
         return state;
