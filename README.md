@@ -1,6 +1,10 @@
 ## Frontend
 O desafio é criar um SPA em React, onde seja possível realizar a busca de um filme pelo seu título. Também deve ser possível visualizar mais detalhes dos filmes.
 
+## Build
+* Development - Só usar os scripts padrão, após baixar as dependências com yarn, basta um 'yarn start'.
+* Production - É necessário rodar os scripts na sequinte ordem; 'yarn build', 'yarn global add serve', 'yarn serve'. A aplicação irá rodar na porta 5000.
+
 ### Login
 * usuário: juntoseguros@mail.com
 * senha: mecontrataae
