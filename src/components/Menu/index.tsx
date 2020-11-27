@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { Container } from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, MoviesCount } from './styles';
 import { signOut } from '~/store/modules/auth/actions';
 import Logo from '~/assets/images/logo.svg';
+import { ApplicationState } from '~/store/types';
+import { Movie } from '~/store/modules/movies/types';
 
 interface IMenuLink {
   to: string;
@@ -23,7 +25,9 @@ const MenuLink: React.FC<IMenuLink> = ({ to, children }) => {
 
 const Menu: React.FC = () => {
   const dispatch = useDispatch();
-
+  const list = useSelector<ApplicationState, Movie[]>(
+    (state) => state.movies.list,
+  );
   function handleSignOut() {
     dispatch(signOut());
   }
@@ -50,7 +54,12 @@ const Menu: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <MenuLink to="/my_list">Minha Lista</MenuLink>
+              <MenuLink to="/my_list">
+                <MoviesCount>
+                  <div>Minha Lista</div>
+                  <span className="badge badge-secondary">{list.length}</span>
+                </MoviesCount>
+              </MenuLink>
             </li>
           </ul>
           <button
