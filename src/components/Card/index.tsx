@@ -1,8 +1,12 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Title } from './styles';
 import { Movie } from '~/store/modules/movies/types';
-import { addMovieInListRequest } from '~/store/modules/movies/actions';
+import {
+  addMovieInListRequest,
+  removeMovieInListRequest,
+} from '~/store/modules/movies/actions';
+import { ApplicationState } from '~/store/types';
 
 interface ICard {
   data: Movie;
@@ -10,10 +14,29 @@ interface ICard {
 
 const Card: React.FC<ICard> = ({ data, ...rest }) => {
   const dispatch = useDispatch();
+  const [exists, setExists] = useState(false);
+
+  const list = useSelector<ApplicationState, Movie[]>(
+    (state) => state.movies.list,
+  );
 
   function handleAddMovie() {
     dispatch(addMovieInListRequest(data));
   }
+
+  function handleDeleteMovie() {
+    dispatch(removeMovieInListRequest(data));
+  }
+
+  useEffect(() => {
+    const filtered = list.filter((movie) => movie.imdbID === data.imdbID)[0];
+
+    if (filtered) {
+      setExists(true);
+    } else {
+      setExists(false);
+    }
+  }, [data, list]);
 
   return (
     <Container className="pl-1 pr-1 pb-2 d-flex justify-content-center">
@@ -27,13 +50,23 @@ const Card: React.FC<ICard> = ({ data, ...rest }) => {
           <Title className="text-truncate font-weight-bold mb-2">
             {data.Title}
           </Title>
-          <button
-            type="button"
-            className="btn btn-outline-secondary btn-sm btn-block"
-            onClick={() => handleAddMovie()}
-          >
-            Adicionar à minha lista
-          </button>
+          {exists ? (
+            <button
+              type="button"
+              className="btn btn-outline-danger btn-sm btn-block"
+              onClick={() => handleDeleteMovie()}
+            >
+              Remover da minha lista
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-outline-secondary btn-sm btn-block"
+              onClick={() => handleAddMovie()}
+            >
+              Adicionar à minha lista
+            </button>
+          )}
         </div>
       </div>
     </Container>

@@ -12,8 +12,8 @@ export enum MoviesActionTypes {
   PAGINATE_CURRENT_SEARCH_FAILURE = '@movies/PAGINATE_CURRENT_SEARCH_FAILURE',
   ADD_MOVIE_IN_LIST_REQUEST = '@movies/ADD_MOVIE_IN_LIST_REQUEST',
   ADD_MOVIE_IN_LIST_SUCESS = '@movies/ADD_MOVIE_IN_LIST_SUCESS',
-  REMOVE_MOVIE_IN_LIST_REQUEST = '@movies/REMOVE_MOVIE_IN_LIST',
-  REMOVE_MOVIE_IN_LIST_SUCESS = '@movies/REMOVE_MOVIE_IN_LIST',
+  REMOVE_MOVIE_IN_LIST_REQUEST = '@movies/REMOVE_MOVIE_IN_LIST_REQUEST',
+  REMOVE_MOVIE_IN_LIST_SUCESS = '@movies/REMOVE_MOVIE_IN_LIST_SUCESS',
 }
 
 /**
@@ -55,6 +55,10 @@ export interface ActionSearchRequest extends AnyAction {
 }
 
 export interface ActionAddMovieInListRequest extends AnyAction {
+  payload: Movie;
+}
+
+export interface ActionRemoveMovieInListRequest extends AnyAction {
   payload: Movie;
 }
 

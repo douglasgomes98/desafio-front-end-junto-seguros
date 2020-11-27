@@ -6,12 +6,14 @@ import {
   paginateCurrentSearchFailure,
   paginateCurrentSearchSucess,
   addMovieInListSucess,
+  removeMovieInListSucess,
 } from './actions';
 import {
   ActionSearchRequest,
   MoviesActionTypes,
   MovieState,
   ActionAddMovieInListRequest,
+  ActionRemoveMovieInListRequest,
 } from './types';
 import api from '~/services/api';
 import { ApplicationState } from '../../types';
@@ -78,7 +80,26 @@ export function* addMovieInListRequest(data: ActionAddMovieInListRequest) {
     yield put(addMovieInListSucess(newMovies));
     toast.success('Filme salvo na sua lista!');
   } catch (error) {
-    toast.error('Esse filme já está salvo na sua lista.');
+    toast.error('Não foi possível salvar o filme na sua lista.');
+  }
+}
+
+export function* removeMovieInListRequest(
+  data: ActionRemoveMovieInListRequest,
+) {
+  const moviesStore: MovieState = yield select(
+    (state: ApplicationState) => state.movies,
+  );
+
+  try {
+    const newMovies = moviesStore.list.filter(
+      (movie) => movie.imdbID !== data.payload.imdbID,
+    );
+
+    yield put(removeMovieInListSucess(newMovies));
+    toast.success('Filme removido da sua lista!');
+  } catch (error) {
+    toast.error('Não foi possível remover o filme da sua lista.');
   }
 }
 
@@ -91,5 +112,9 @@ export default all([
   takeLatest(
     MoviesActionTypes.ADD_MOVIE_IN_LIST_REQUEST,
     addMovieInListRequest,
+  ),
+  takeLatest(
+    MoviesActionTypes.REMOVE_MOVIE_IN_LIST_REQUEST,
+    removeMovieInListRequest,
   ),
 ]);

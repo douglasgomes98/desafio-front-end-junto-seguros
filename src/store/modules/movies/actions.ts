@@ -29,4 +29,4 @@ export const removeMovieInListRequest = (data: Movie) =>
   action(MoviesActionTypes.REMOVE_MOVIE_IN_LIST_REQUEST, data);
 
 export const removeMovieInListSucess = (data: Movie[]) =>
-  action(MoviesActionTypes.REMOVE_MOVIE_IN_LIST_SUCESS, data);
+  action(MoviesActionTypes.REMOVE_MOVIE_IN_LIST_SUCESS, { movies: data });

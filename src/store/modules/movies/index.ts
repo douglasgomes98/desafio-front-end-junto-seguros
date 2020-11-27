@@ -43,7 +43,7 @@ const reducer: Reducer<MovieState> = (state = INITIAL_STATE, action) => {
         draft.list = action.payload.movies;
         break;
       case MoviesActionTypes.REMOVE_MOVIE_IN_LIST_SUCESS:
-        draft.list = action.payload.data.movies;
+        draft.list = action.payload.movies;
         break;
       default:
         return state;
