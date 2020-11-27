@@ -50,14 +50,7 @@ const Login: React.FC = () => {
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
       <FormContainer className="rounded bg-white p-4 shadow-sm text-center">
         <img src={Logo} alt="logo" />
-        <Form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          initialData={{
-            email: 'juntoseguros@mail.com',
-            password: 'mecontrataae',
-          }}
-        >
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <Input type="text" name="email" placeholder="Usuário" />
           <Input type="password" name="password" placeholder="Senha" />
           {loading ? (
