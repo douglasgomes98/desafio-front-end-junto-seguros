@@ -1,5 +1,10 @@
 import { action } from 'typesafe-actions';
-import { MoviesActionTypes, Movie, PaginateSucess } from './types';
+import {
+  MoviesActionTypes,
+  Movie,
+  PaginateSucess,
+  MovieDetails,
+} from './types';
 
 export const searcMoviesRequest = (data: string) =>
   action(MoviesActionTypes.SEARCH_MOVIES_REQUEST, data);
@@ -30,3 +35,12 @@ export const removeMovieInListRequest = (data: Movie) =>
 
 export const removeMovieInListSucess = (data: Movie[]) =>
   action(MoviesActionTypes.REMOVE_MOVIE_IN_LIST_SUCESS, { movies: data });
+
+export const showDetailsMovieRequest = (data: Movie) =>
+  action(MoviesActionTypes.SHOW_DETAILS_MOVIE_REQUEST, data);
+
+export const showDetailsMovieSucess = (data: MovieDetails) =>
+  action(MoviesActionTypes.SHOW_DETAILS_MOVIE_SUCESS, data);
+
+export const showDetailsMovieFailure = () =>
+  action(MoviesActionTypes.SHOW_DETAILS_MOVIE_FAILURE);

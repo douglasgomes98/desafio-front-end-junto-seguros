@@ -14,6 +14,9 @@ export enum MoviesActionTypes {
   ADD_MOVIE_IN_LIST_SUCESS = '@movies/ADD_MOVIE_IN_LIST_SUCESS',
   REMOVE_MOVIE_IN_LIST_REQUEST = '@movies/REMOVE_MOVIE_IN_LIST_REQUEST',
   REMOVE_MOVIE_IN_LIST_SUCESS = '@movies/REMOVE_MOVIE_IN_LIST_SUCESS',
+  SHOW_DETAILS_MOVIE_REQUEST = '@movies/SHOW_DETAILS_MOVIE_REQUEST',
+  SHOW_DETAILS_MOVIE_SUCESS = '@movies/SHOW_DETAILS_MOVIE_SUCESS',
+  SHOW_DETAILS_MOVIE_FAILURE = '@movies/SHOW_DETAILS_MOVIE_FAILURE',
 }
 
 /**
@@ -59,6 +62,10 @@ export interface ActionAddMovieInListRequest extends AnyAction {
 }
 
 export interface ActionRemoveMovieInListRequest extends AnyAction {
+  payload: Movie;
+}
+
+export interface ActionShowDetailsMovieRequest extends AnyAction {
   payload: Movie;
 }
 

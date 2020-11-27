@@ -7,6 +7,8 @@ import {
   paginateCurrentSearchSucess,
   addMovieInListSucess,
   removeMovieInListSucess,
+  showDetailsMovieSucess,
+  showDetailsMovieFailure,
 } from './actions';
 import {
   ActionSearchRequest,
@@ -14,6 +16,7 @@ import {
   MovieState,
   ActionAddMovieInListRequest,
   ActionRemoveMovieInListRequest,
+  ActionShowDetailsMovieRequest,
 } from './types';
 import api from '~/services/api';
 import { ApplicationState } from '../../types';
@@ -103,6 +106,20 @@ export function* removeMovieInListRequest(
   }
 }
 
+export function* showDetailsMovieRequest(data: ActionShowDetailsMovieRequest) {
+  try {
+    const response = yield call(
+      api.get,
+      `?apikey=${process.env.REACT_APP_API_IMDB_TOKEN}&i=${data.payload.imdbID}`,
+    );
+
+    yield put(showDetailsMovieSucess(response.data));
+  } catch (error) {
+    yield put(showDetailsMovieFailure());
+    toast.error('Não foi possível encontrar o detalhes do filme.');
+  }
+}
+
 export default all([
   takeLatest(MoviesActionTypes.SEARCH_MOVIES_REQUEST, searcMoviesRequest),
   takeLatest(
@@ -116,5 +133,9 @@ export default all([
   takeLatest(
     MoviesActionTypes.REMOVE_MOVIE_IN_LIST_REQUEST,
     removeMovieInListRequest,
+  ),
+  takeLatest(
+    MoviesActionTypes.SHOW_DETAILS_MOVIE_REQUEST,
+    showDetailsMovieRequest,
   ),
 ]);
