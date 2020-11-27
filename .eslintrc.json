@@ -33,14 +33,16 @@
         "tsx": "never"
       }
     ],
-    "react/prop-types": 0,
+    "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-curly-newline": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/button-has-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-param-reassign": [2, { "props": false }],
-    "consistent-return": 0
+    "consistent-return": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   },
   "settings": {
     "import/resolver": {

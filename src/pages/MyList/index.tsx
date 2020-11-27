@@ -25,6 +25,11 @@ const MyList: React.FC = () => {
             <Card key={movie.imdbID} data={movie} />
           ))}
         </div>
+        {list.length === 0 && (
+          <div className="alert alert-warning text-center" role="alert">
+            Você ainda não adicionou filmes a sua lista.
+          </div>
+        )}
       </ContainerMovies>
     </Container>
   );
